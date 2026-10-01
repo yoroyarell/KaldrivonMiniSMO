@@ -19,6 +19,7 @@ The installer is **not code-signed** yet, so Windows SmartScreen may warn on fir
 - **"An error occurred while sending the request"** after deleting NFs: deleting an NF with a long history could hold the database for a long time. NF data is now deleted in small batches, VES events of an NF being deleted no longer fail, app and backend keep-alive times are aligned, and a failed read is retried once.
 - **"Unspecified alarm"** entries after adding an NF: 3GPP AlarmList records that carry only an alarmId and a severity appeared when the first list read ran before VES was set up. VES is now pointed at MiniSMO before monitoring starts, an NF pointed at the collector counts as reporting its faults by VES, and such entries already shown are removed at the next list read. An NF that has only an AlarmList still shows them (they are its only fault data).
 - **Dialogs**: wider (up to 960 px); long titles, check box and toggle labels, field headers and texts wrap instead of being cut off, and tall dialogs scroll.
+- **Backups**: database backup copies kept a file handle open, so on Windows the limit on automatic backups could fail to delete the oldest copy.
 
 ## Known limitations
 

@@ -1,0 +1,74 @@
+KALDRIVON MINISMO 0.3.1 — THIRD-PARTY NOTICES
+
+Kaldrivon MiniSMO includes the open-source components listed below. Each component is licensed
+under its own terms; the full license texts are available from each project and, for Python
+components, in the *.dist-info folders inside the installation's backend\_internal directory.
+
+Before each public release, regenerate this list from the release build's lock files and verify it
+(e.g. `pip-licenses --from=mixed` in build\venv and `dotnet list package --include-transitive`).
+
+BACKEND (Python, packaged with PyInstaller)
+  CPython 3.12 ............................ Python Software Foundation License
+  FastAPI ................................. MIT
+  Starlette ............................... BSD-3-Clause
+  Uvicorn ................................. BSD-3-Clause
+  h11 ..................................... MIT
+  anyio ................................... MIT
+  httpx / httpcore ........................ BSD-3-Clause
+  certifi ................................. MPL-2.0 (unmodified; source: https://github.com/certifi/python-certifi)
+  click ................................... BSD-3-Clause
+  Pydantic / pydantic-core ................ MIT
+  annotated-types ......................... MIT
+  annotated-doc ........................... MIT
+  typing-inspection ....................... MIT
+  typing-extensions ....................... Python Software Foundation License
+  SQLAlchemy .............................. MIT
+  SQLite .................................. Public Domain
+  Paramiko ................................ LGPL-2.1-or-later (see note below)
+  bcrypt .................................. Apache-2.0
+  PyNaCl / libsodium ...................... Apache-2.0 / ISC
+  cryptography ............................ Apache-2.0 or BSD-3-Clause
+  OpenSSL (bundled by cryptography) ....... Apache-2.0
+  cffi .................................... MIT
+  libffi (bundled by Python) .............. MIT
+  lxml .................................... BSD-3-Clause
+  libxml2 / libxslt (bundled by lxml) ..... MIT
+  psutil .................................. BSD-3-Clause
+  python-multipart ........................ Apache-2.0
+  idna .................................... BSD-3-Clause
+  packaging ............................... Apache-2.0 or BSD-2-Clause
+  setuptools (runtime parts) .............. MIT
+  Pygments ................................ BSD-2-Clause
+  pytest (internal modules) ............... MIT
+  Microsoft Visual C++ runtime ............ Microsoft Visual C++ Redistributable license
+                                            (VCRUNTIME140.dll, VCRUNTIME140_1.dll)
+  PyInstaller bootloader .................. GPL-2.0 with bootloader exception (permits
+                                            distribution of the bundled application under
+                                            any license)
+
+  Paramiko (LGPL-2.1): Paramiko is shipped unmodified as plain Python source files in
+  backend\_internal\paramiko so that it can be replaced with a modified version, as permitted by
+  the LGPL. Source: https://github.com/paramiko/paramiko. Kaldrivon will provide the corresponding
+  source of the Paramiko version used on request (info@kaldrivon.com).
+
+WINDOWS APPLICATION (.NET)
+  .NET 8 runtime .......................... MIT
+  Windows App SDK / WinUI 3 ............... MIT
+  Microsoft.Extensions.DependencyInjection  MIT
+  Microsoft.Extensions.Http ............... MIT
+  CommunityToolkit.Mvvm ................... MIT
+  Microsoft Edge WebView2 ................. The WebView2 Runtime is part of Windows 11 and is not
+                                            redistributed by this installer.
+
+FONTS (bundled, unmodified; license texts in app\Assets\Fonts)
+  IBM Plex Sans, IBM Plex Mono ............ SIL Open Font License 1.1, Copyright 2017 IBM Corp.
+                                            (Reserved Font Name "Plex")
+  Space Grotesk ........................... SIL Open Font License 1.1, Copyright 2020 The Space
+                                            Grotesk Project Authors
+
+DOCUMENTATION TOOLING (build time only, not distributed)
+  Python-Markdown (BSD-3-Clause), Playwright (Apache-2.0), Inno Setup (Inno Setup License).
+
+Kaldrivon MiniSMO does not bundle any O-RAN Alliance, 3GPP or vendor YANG models.
+
+© 2026 Kaldrivon · https://kaldrivon.com
