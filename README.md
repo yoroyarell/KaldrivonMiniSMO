@@ -1,13 +1,15 @@
 # Kaldrivon MiniSMO
 
-A small Windows SMO for lab and demo work: a simulated O-RAN demo network, plus FM / CM / PM monitoring of external NETCONF NFs, a VES 7.2.1 collector, and confirmed configuration changes on external NFs.
+A small Windows SMO for lab and demo work: a simulated O-RAN demo network, plus FM / CM / PM monitoring of external NETCONF NFs (methods chosen from each NF's capabilities, with fallback), a VES 7.2.1 collector, file-based PM, and confirmed configuration changes on external NFs.
+
+Two editions share one installer: **Community** (no license, up to 5 external NFs, every essential FM / CM / PM function and a small allowance of each Pro feature) and **Pro** (a signed license file: more NFs, automation, analytics, API & webhooks and the other Pro features without limits).
 
 ## Download
 
 Get the installer from [Releases](../../releases). Check it against the `.sha256` file published alongside it:
 
 ```powershell
-Get-FileHash .\Kaldrivon-MiniSMO-0.2.0-Setup.exe -Algorithm SHA256
+Get-FileHash .\Kaldrivon-MiniSMO-0.3.0-Setup.exe -Algorithm SHA256
 ```
 
 ## Requirements
@@ -18,7 +20,8 @@ Get-FileHash .\Kaldrivon-MiniSMO-0.2.0-Setup.exe -Algorithm SHA256
 ## Notes
 
 - The installer is not code-signed yet, so SmartScreen may warn on first run.
-- The EULA shipped with 0.2.0 is a draft.
+- The EULA shipped with 0.3.0 is a draft.
+- 0.3.0 upgrades 0.2.0 in place; the database is backed up and migrated on first start.
 - The installer adds one Windows Firewall rule for the VES collector ports (TCP 8443, 8080, Domain/Private). You can untick it during setup; it is removed on uninstall.
 
-See [RELEASE-NOTES-0.2.0.md](RELEASE-NOTES-0.2.0.md) for what's in this version.
+See [RELEASE-NOTES-0.3.0.md](RELEASE-NOTES-0.3.0.md) for what's in this version ([0.2.0](RELEASE-NOTES-0.2.0.md)).
