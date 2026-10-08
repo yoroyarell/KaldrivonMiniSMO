@@ -30,6 +30,6 @@ The same guide is built into the app (**Help**, or F1 on any page).
 - The EULA shipped with 0.4.0 is a draft.
 - 0.4.0 upgrades 0.3.x and 0.2.0 in place; your data, NFs and license are kept (the database is backed up and migrated on first start).
 - Open-source components and their licenses: [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) (also installed with the app).
-- The installer adds one Windows Firewall rule for the VES collector ports (TCP 8443, 8080, Domain/Private). You can untick it during setup; it is removed on uninstall. An optional rule for NETCONF Call Home (TCP 4334) is offered too, off by default.
+- The installer adds one Windows Firewall rule for the VES collector ports (TCP 8443, 8080, Domain/Private). You can untick it during setup; it is removed on uninstall. A second rule opens TCP 4334 for NETCONF Call Home (Domain/Private); it is ticked by default and can be unticked too. Call Home itself stays off until you turn it on in Settings.
 
 See [RELEASE-NOTES-0.4.0.md](RELEASE-NOTES-0.4.0.md) for what's in this version ([0.3.1](RELEASE-NOTES-0.3.1.md), [0.3.0](RELEASE-NOTES-0.3.0.md), [0.2.0](RELEASE-NOTES-0.2.0.md)).
