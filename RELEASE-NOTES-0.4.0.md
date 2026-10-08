@@ -25,6 +25,7 @@ The installer is **not code-signed** yet, so Windows SmartScreen may warn on fir
 - PM showed configuration and state values (for example 3GPP NRM `attributes`, O-RAN delay profiles, sync status) as measurements. Only measurement containers qualify now, and only the leaves declared in them are read.
 - VES perf3gpp PM showed "no samples yet" / "events 0" in the NF's PM status although the values were stored and plotted.
 - **PM values dated in the future are refused** (more than 5 minutes, or one period, ahead of this PC's clock). They sat on the chart days ahead and made later correct values look out of order. The VES log and the NF's PM source say how far ahead the NF's timestamps are; values of this kind already stored are removed by the upgrade.
+- The O-RU PM source showed "expected every 60 s" from a fixed MiniSMO value. The expected interval now comes only from the NF: for O-RUs the shortest `*-measurement-interval` in their `o-ran-performance-management` configuration (results are read once per that interval); without one there is no expectation and results are read every 300 s. A YANG-Push period counts as expected only once the NF accepted the subscription.
 - CPU on *Health & Capacity* and in the system health check always read 0 %. CPU is now sampled every 2 seconds; process CPU is a share of the whole machine.
 - Help: links between topics did nothing; they now open the topic.
 - *Edit NF* sends only changed values, so saving a description no longer forgets a pinned host key.
