@@ -1,35 +1,35 @@
 # Kaldrivon MiniSMO
 
-A small Windows SMO for lab and demo work: a simulated O-RAN demo network, plus FM / CM / PM monitoring of external NETCONF NFs (methods chosen from each NF's capabilities, with fallback; NETCONF Call Home), a VES 7.2.1 collector with VES destinations set through standard models (3GPP `NtfSubscriptionControl`, O-RAN WG4 for O-RUs), file-based PM, confirmed configuration changes on external NFs, and an O-RAN R1 interface for rApps (Pro).
+A small Windows SMO for lab and demo work: a simulated O-RAN demo network, plus FM / CM / PM monitoring of external NETCONF NFs (methods chosen from each NF's capabilities, with fallback; NETCONF Call Home), a VES 7.2.1 collector (HTTPS) with VES destinations set through standard models (3GPP `NtfSubscriptionControl`, O-RAN WG4 for O-RUs), file-based PM, confirmed configuration changes on external NFs, and an O-RAN R1 interface for rApps.
 
-Two editions share one installer: **Community** (no license, up to 5 external NFs, every essential FM / CM / PM function and a small allowance of each Pro feature) and **Pro** (a signed license file: more NFs, automation, analytics, API & webhooks and the other Pro features without limits).
+Licensing is by capacity only: every feature is included, and MiniSMO is free for up to 5 external NFs (**Community**). A signed license file raises the external NF limit (**Small Deployment**, up to 25, or **Unlimited**).
 
 ## Download
 
-Get the installer from [Releases](../../releases). Check it against the `.sha256` file published alongside it:
+Get the installer from [Releases](../../releases). It is code-signed by Kaldrivon (Azure Artifact Signing). Check it against the `.sha256` file published alongside it:
 
 ```powershell
-Get-FileHash .\Kaldrivon-MiniSMO-0.4.0-Setup.exe -Algorithm SHA256
+Get-FileHash .\Kaldrivon-MiniSMO-0.5.0-Setup.exe -Algorithm SHA256
+Get-AuthenticodeSignature .\Kaldrivon-MiniSMO-0.5.0-Setup.exe
 ```
 
 ## Documentation
 
-- [User Guide (PDF)](docs/Kaldrivon-MiniSMO-User-Guide-0.4.0.pdf): installation, Demo Network, external NFs, FM / CM / PM, VES, Community and Pro, troubleshooting
-- [Quick Start (PDF)](docs/Kaldrivon-MiniSMO-Quick-Start-0.4.0.pdf): install and first steps on four pages
+- [User Guide (PDF)](docs/Kaldrivon-MiniSMO-User-Guide-0.5.0.pdf): installation, Demo Network, external NFs, FM / CM / PM, VES, licensing, troubleshooting
+- [Quick Start (PDF)](docs/Kaldrivon-MiniSMO-Quick-Start-0.5.0.pdf): install and first steps
 
 The same guide is built into the app (**Help**, or F1 on any page).
 
 ## Requirements
 
-- Windows 10 (19041) or Windows 11, x64
+- Windows 11, x64
 - The installer is self-contained (no .NET or Python needed)
 
 ## Notes
 
-- The installer is not code-signed yet, so SmartScreen may warn on first run.
-- The EULA shipped with 0.4.0 is a draft.
-- 0.4.0 upgrades 0.3.x and 0.2.0 in place; your data, NFs and license are kept (the database is backed up and migrated on first start).
+- 0.5.0 is the first public release. Earlier builds were previews; there is no upgrade path from them.
+- 0.5.0 includes security hardening (local API key, SSH host key and file server confirmation, VES sender check, HTTPS-only VES). Some of it changes behaviour; see the release notes. MiniSMO is not certified against any security standard.
 - Open-source components and their licenses: [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) (also installed with the app).
-- The installer adds one Windows Firewall rule for the VES collector ports (TCP 8443, 8080, Domain/Private). You can untick it during setup; it is removed on uninstall. A second rule opens TCP 4334 for NETCONF Call Home (Domain/Private); it is ticked by default and can be unticked too. Call Home itself stays off until you turn it on in Settings.
+- The installer offers three Windows Firewall rules, each scoped to the MiniSMO backend and to Domain/Private networks, and each can be unticked during setup: VES collector (TCP 8443), PM file receiver (TCP 2222, SFTP) and NETCONF Call Home (TCP 4334; Call Home itself stays off until you turn it on in Settings). They are removed on uninstall.
 
-See [RELEASE-NOTES-0.4.0.md](RELEASE-NOTES-0.4.0.md) for what's in this version ([0.3.1](RELEASE-NOTES-0.3.1.md), [0.3.0](RELEASE-NOTES-0.3.0.md), [0.2.0](RELEASE-NOTES-0.2.0.md)).
+See [RELEASE-NOTES-0.5.0.md](RELEASE-NOTES-0.5.0.md) for what's in this version.
