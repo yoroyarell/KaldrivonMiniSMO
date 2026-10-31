@@ -1,6 +1,14 @@
 # Kaldrivon MiniSMO 0.6.1 — Release Notes
 
-Windows 11 x64. Installer: `Kaldrivon-MiniSMO-0.6.1-Setup.exe` (checksum in `.sha256`), code-signed by Kaldrivon. Installs over 0.6.0 and 0.5.x in place; your data, NFs, accounts and license are kept. *SYSTEM > About > Software updates* offers this version.
+Windows 11 x64: `Kaldrivon-MiniSMO-0.6.1-Setup.exe` (checksum in `.sha256`), code-signed by Kaldrivon. Installs over 0.6.0 and 0.5.x in place; your data, NFs, accounts and license are kept. *SYSTEM > About > Software updates* offers this version.
+Linux x86_64: `kaldrivon-minismo_0.6.1-1_amd64.deb` and `kaldrivon-minismo-0.6.1-1.x86_64.rpm` (checksums in `SHA256SUMS`).
+
+## New: Linux packages
+
+- **MiniSMO for Linux** (x86_64): `kaldrivon-minismo_0.6.1-1_amd64.deb` for Ubuntu, Linux Mint and Debian, `kaldrivon-minismo-0.6.1-1.x86_64.rpm` for RHEL, Rocky, Alma and Fedora (glibc 2.28 or newer, systemd). They bring their own Python runtime and need nothing else.
+- On Linux, MiniSMO runs as the service `kaldrivon-minismo` under its own unprivileged account, starts at boot, and is used in a browser (Team mode, `https://<machine>:9443/`). There is no desktop app.
+- `sudo kaldrivon-minismo create-admin <name>` creates the first admin; `reset-password`, `list-users`, `status` and `logs` are there too. Settings: `/etc/kaldrivon-minismo/minismo.env`; data: `/var/lib/kaldrivon-minismo`.
+- Upgrading keeps the data; removing the package keeps it too, `apt purge` removes everything.
 
 ## Changed
 
