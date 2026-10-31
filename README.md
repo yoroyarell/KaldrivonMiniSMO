@@ -25,14 +25,41 @@ From 0.5.2 on, MiniSMO can also check for, download and install new versions its
 
 `kaldrivon-minismo_<version>_amd64.deb` (Ubuntu, Linux Mint, Debian) and `kaldrivon-minismo-<version>-1.x86_64.rpm` (RHEL, Rocky, Alma, Fedora), x86_64, with `SHA256SUMS`. On Linux, MiniSMO runs as a service and is used in a browser (Team mode); there is no desktop app. The packages bring their own Python runtime and need nothing else.
 
+**Ubuntu, Linux Mint, Debian (.deb)**
+
 ```bash
 sha256sum -c SHA256SUMS --ignore-missing
-sudo apt install ./kaldrivon-minismo_0.6.1-1_amd64.deb        # or: sudo dnf install ./kaldrivon-minismo-0.6.1-1.x86_64.rpm
-sudo kaldrivon-minismo create-admin <name>                     # the first admin account (asks for the password)
-sudo kaldrivon-minismo status                                  # service state and the web address
+sudo apt install ./kaldrivon-minismo_0.6.1-1_amd64.deb
+sudo kaldrivon-minismo create-admin <name>      # the first admin account (asks for the password twice)
+sudo kaldrivon-minismo status                   # service state and the web address
+sudo ufw allow 9443/tcp && sudo ufw allow 8443/tcp   # if ufw is on: web UI and VES collector
 ```
 
-Then open `https://<this machine>:9443/` and sign in. Settings are in `/etc/kaldrivon-minismo/minismo.env`, data in `/var/lib/kaldrivon-minismo`, logs in `journalctl -u kaldrivon-minismo`. Open the ports NFs and browsers need (*Settings > Communication Matrix* lists them), for example `sudo ufw allow 9443/tcp` and `sudo ufw allow 8443/tcp`. Upgrading installs over the old version and keeps the data; `sudo apt purge kaldrivon-minismo` removes everything.
+Upgrade: `sudo apt install ./kaldrivon-minismo_<new version>_amd64.deb` (keeps the data). Remove: `sudo apt remove kaldrivon-minismo` keeps the data and the account; `sudo apt purge kaldrivon-minismo` removes everything.
+
+**RHEL, Rocky, Alma, Fedora (.rpm)**
+
+```bash
+sha256sum -c SHA256SUMS --ignore-missing
+sudo dnf install ./kaldrivon-minismo-0.6.1-1.x86_64.rpm
+sudo kaldrivon-minismo create-admin <name>      # the first admin account (asks for the password twice)
+sudo kaldrivon-minismo status                   # service state and the web address
+sudo firewall-cmd --permanent --add-port=9443/tcp --add-port=8443/tcp && sudo firewall-cmd --reload
+```
+
+Upgrade: `sudo dnf install ./kaldrivon-minismo-<new version>-1.x86_64.rpm` (keeps the data). Remove: `sudo dnf remove kaldrivon-minismo` keeps the data and the account; to remove them too, then run `sudo rm -rf /var/lib/kaldrivon-minismo /var/log/kaldrivon-minismo /etc/kaldrivon-minismo && sudo userdel minismo`.
+
+**Both**
+
+Open `https://<this machine>:9443/` and sign in. The browser warns about MiniSMO's own certificate until you load yours in *Settings > Access*. Other ports NFs may need (PM file receiver 2222, NETCONF Call Home 4334) are listed in *Settings > Communication Matrix*.
+
+| | |
+|---|---|
+| Settings | `/etc/kaldrivon-minismo/minismo.env` (then `sudo systemctl restart kaldrivon-minismo`) |
+| Data | `/var/lib/kaldrivon-minismo` |
+| Logs | `journalctl -u kaldrivon-minismo` or `/var/log/kaldrivon-minismo` |
+| Accounts | `sudo kaldrivon-minismo create-admin <name>`, `reset-password <name>`, `list-users` |
+| Service | `sudo systemctl start` / `stop` / `restart` / `status kaldrivon-minismo` |
 
 ## Documentation
 
