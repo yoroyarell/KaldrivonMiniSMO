@@ -1,4 +1,4 @@
-KALDRIVON MINISMO 0.7.0 — THIRD-PARTY NOTICES
+KALDRIVON MINISMO 0.7.1 — THIRD-PARTY NOTICES
 
 Kaldrivon MiniSMO includes the open-source components listed below. Each component is licensed
 under its own terms; the full license texts are available from each project and, for Python
@@ -36,6 +36,9 @@ BACKEND (Python, packaged with PyInstaller)
   psutil .................................. BSD-3-Clause
   python-multipart ........................ Apache-2.0
   idna .................................... BSD-3-Clause
+  invoke (used by Paramiko) ............... BSD-2-Clause
+  pycparser (used by cffi) ................ BSD-3-Clause
+  colorama (Windows only) ................. BSD-3-Clause
   packaging ............................... Apache-2.0 or BSD-2-Clause
   setuptools (runtime parts) .............. MIT
   Pygments ................................ BSD-2-Clause
@@ -53,12 +56,16 @@ BACKEND (Python, packaged with PyInstaller)
 
 WINDOWS APPLICATION (.NET)
   .NET 8 runtime .......................... MIT
-  Windows App SDK / WinUI 3 ............... MIT
-  Microsoft.Extensions.DependencyInjection  MIT
-  Microsoft.Extensions.Http ............... MIT
+  Windows App SDK / WinUI 3 runtime ....... Microsoft Software License Terms, Microsoft Windows App
+                                            SDK (distributable code, shipped with the application)
+  Microsoft.Extensions.* .................. MIT (Configuration, DependencyInjection, Diagnostics,
+                                            Http, Logging, Options, Primitives)
   CommunityToolkit.Mvvm ................... MIT
-  Microsoft Edge WebView2 ................. The WebView2 Runtime is part of Windows 11 and is not
-                                            redistributed by this installer.
+  Microsoft.Web.WebView2 (interop libraries) and the Windows SDK .NET projection
+                                            (Microsoft.Windows.SDK.NET) ... Microsoft license terms
+                                            included in their NuGet packages
+  Microsoft Edge WebView2 Runtime ......... Part of Windows 11; not redistributed by this
+                                            installer.
 
 FONTS (bundled, unmodified; license texts in app\Assets\Fonts)
   IBM Plex Sans, IBM Plex Mono ............ SIL Open Font License 1.1, Copyright 2017 IBM Corp.
@@ -69,6 +76,16 @@ FONTS (bundled, unmodified; license texts in app\Assets\Fonts)
 DOCUMENTATION TOOLING (build time only, not distributed)
   Python-Markdown (BSD-3-Clause), Playwright (Apache-2.0), Inno Setup (Inno Setup License).
 
-Kaldrivon MiniSMO does not bundle any O-RAN Alliance, 3GPP or vendor YANG models.
+LINUX PACKAGES (.deb / .rpm)
+  The Linux packages contain a self-contained CPython 3.12 runtime from python-build-standalone
+  (https://github.com/astral-sh/python-build-standalone; CPython: Python Software Foundation
+  License, text in python/lib/python3.12/LICENSE.txt) with the libraries it links in, and the Python
+  components listed above as unmodified wheels in python/lib/python3.12/site-packages (each with its
+  license in its *.dist-info folder; Paramiko as plain Python source files there).
+
+Kaldrivon MiniSMO does not bundle any O-RAN Alliance, 3GPP or vendor YANG models. The Demo
+Network's devices use small YANG subsets written by Kaldrivon for the demo, which use the standard
+module names, namespaces and data node names so that they interoperate; they contain no module text
+of the published models.
 
 © 2026 Kaldrivon · https://kaldrivon.com
